@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-
 public class User {
 
 	//constants 
@@ -12,24 +10,24 @@ public class User {
 	
 	//atributes
 	private String documentType;
-	private int id;
+	private String id;
 	private String name;
 	private String lastName;
 	private int phone;
 	private String address;
 	
 	//relations
-	public ArrayList<Turn>turns;
+	public Turn[] turn;
 	
 	//constructor
-	public User(String documentType, int id, String name, String lastName, int phone, String address) {
+	public User(String documentType, String id, String name, String lastName, int phone, String address) {
 		this.documentType = documentType;
 		this.id = id;
 		this.name = name;
 		this.lastName = lastName;
 		this.phone = phone;
 		this.address = address;
-		turns = new ArrayList<Turn>();
+		turn = new Turn[1];
 	}
 	
 	//getters and setters
@@ -41,11 +39,11 @@ public class User {
 		this.documentType = documentType;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -80,6 +78,15 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-
+	
+	public String addTurn(Turn tn) {
+		String t = "";
+		if(turn[0] == null) {
+			turn[0] = tn;
+			t = turn[0].toString();
+		}else {
+			t = turn[0].toString();
+		}
+		return t;
+	}
 }

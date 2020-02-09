@@ -12,11 +12,11 @@ public class Turn {
 	public boolean status;
 	
 	//constructor
-	public Turn(int num, char letter, boolean status) {
+	public Turn(int num, char letter) {
 		super();
 		this.num = num;
 		this.letter = letter;
-		this.status = status;
+		this.status = false;
 	}
 	
 	//getters y setters
@@ -37,6 +37,11 @@ public class Turn {
 	}
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "Turn [num=" + num + ", letter=" + letter + ", status=" + status + "]";
 	}
 	
 	
