@@ -27,7 +27,7 @@ public class User {
 		this.lastName = lastName;
 		this.phone = phone;
 		this.address = address;
-		turn = new Turn[1];
+		turn = new Turn[3];
 	}
 	
 	//getters and setters
@@ -79,6 +79,10 @@ public class User {
 		this.address = address;
 	}
 	
+	public Turn[] getTurn() {
+		return turn;
+	}
+	//methods
 	public String addTurn(Turn tn) {
 		String t = "";
 		if(turn[0] == null) {

@@ -32,16 +32,17 @@ public class Turn {
 	public void setLetter(char letter) {
 		this.letter = letter;
 	}
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
-	@Override
 	public String toString() {
-		return "Turn [num=" + num + ", letter=" + letter + ", status=" + status + "]";
+		String msg = "Turn [" + letter + num +"]";
+		return msg;
+		
 	}
 	
 	
