@@ -82,15 +82,4 @@ public class User {
 	public Turn[] getTurn() {
 		return turn;
 	}
-	//methods
-	public String addTurn(Turn tn) {
-		String t = "";
-		if(turn[0] == null) {
-			turn[0] = tn;
-			t = turn[0].toString();
-		}else {
-			t = turn[0].toString();
-		}
-		return t;
-	}
 }

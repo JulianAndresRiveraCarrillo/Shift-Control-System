@@ -34,13 +34,13 @@ public class Control {
 	}
 	
 	//methods 
-	public char[] createArray() {
-		char[] s = new char[26];
-		for ( int i=0; i<26; i++) {
+	/*public char[] createArray() {
+		char[] s = new char[25];
+		for ( int i=0; i<25; i++) {
 			s[i] = (char) ('A' + i );
 		}
 		return s;
-	}
+	}*/
 	
 	public String addUser(String documentType, String id, String name, String lastName, int phone, String address) {
 		String msg = "";
@@ -77,8 +77,8 @@ public class Control {
 	}
 	
 	public String addTurn(String id) {
-		char[] letters = createArray();
-		int l = 0;
+		char letters = 'A';
+		//int l = 0;
 		String msg = "";
 		User u = searchUser(id);
 		if (u != null) {
@@ -87,9 +87,12 @@ public class Control {
 					msg = "the user " + u.getName() + " " + u.getLastName() + " has the turn " +u.turn[i] + " unanttended";
 				}else {
 					if (num() > 99) {
-						l++;
+						letters++;
+						if (letters == 'Z') {
+							letters = 'A';
+						}
 					}
-					u.turn[i] = new Turn(num(), letters[l]);
+					u.turn[i] = new Turn(num(), letters);
 					msg = "the turn " + u.turn[i].toString() + " has been assigned to " + u.getName() + " " + u.getLastName();
 				}
 			}
@@ -114,6 +117,8 @@ public class Control {
 		if (turn() != null && (turn().getNum() +1) <= 99) {
 			n = turn().getNum() +1;
 		}
+		
+		
 		return n;
 	}
 
