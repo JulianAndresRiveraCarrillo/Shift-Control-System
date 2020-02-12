@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-import com.sun.javafx.runtime.eula.Eula;
+import exception.InputException;
 
 public class Control {
 
@@ -42,17 +42,17 @@ public class Control {
 		return s;
 	}*/
 	
-	public String addUser(String documentType, String id, String name, String lastName, int phone, String address) {
+	public String addUser(String documentType, String id, String name, String lastName, long phone, String address) throws InputException{
 		String msg = "";
 		User u = new User(documentType, id, name, lastName, phone, address);
-		if (documentType == null) {
-			msg = "The document Type is obligatory. Please, write it";
-		}else if (id == null) {
-			msg = "The id is obligatory. Please, write it";
-		}else if (name == null) {
-			msg = "The name is obligatory. Please, write it";
-		}else if (lastName == null) {
-			msg = "The lastName is obligatory. Please, write it";
+		if (documentType == "") {
+			throw new InputException(1);
+		}else if (id == "") {
+			throw new InputException(2);
+		}else if (name == "") {
+			throw new InputException(3);
+		}else if (lastName == "") {
+			throw new InputException(4);
 		}else {
 			if (searchUser(id) != null) {
 				msg = "The user is already created";

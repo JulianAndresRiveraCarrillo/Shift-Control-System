@@ -13,14 +13,14 @@ public class User {
 	private String id;
 	private String name;
 	private String lastName;
-	private int phone;
+	private long phone;
 	private String address;
 	
 	//relations
 	public Turn[] turn;
 	
 	//constructor
-	public User(String documentType, String id, String name, String lastName, int phone, String address) {
+	public User(String documentType, String id, String name, String lastName, long phone, String address) {
 		this.documentType = documentType;
 		this.id = id;
 		this.name = name;
@@ -63,7 +63,7 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public int getPhone() {
+	public long getPhone() {
 		return phone;
 	}
 
