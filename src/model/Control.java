@@ -49,7 +49,7 @@ public class Control {
 		User u = new User(documentType, id, name, lastName, phone, address);
 		if (documentType.equals("")) {
 			throw new InputException(1);
-		}else if (id.equals("")) {
+		}if (id.equals("")) {
 			throw new InputException(2);
 		}else if (name.equals("")) {
 			throw new InputException(3);
@@ -89,7 +89,7 @@ public class Control {
 		if (u != null) {
 			for (int i = 0; i < u.getTurn().length && !added; i++) {
 				if (u.turn[i] != null && u.turn[i].getStatus() == false) {
-					msg = "the user " + u.getName() + " " + u.getLastName() + " has the turn " +u.turn[i] + " unanttended";
+					msg += "the user " + u.getName() + " " + u.getLastName() + " has the turn " +u.turn[i] + " unanttended\n";
 				}else {
 					if (num() > 99) {
 						letters++;
@@ -101,9 +101,10 @@ public class Control {
 					u.turn[i] = t;
 					turns.add(t);
 					added = true;
-					msg = "the turn " + u.turn[i].toString() + " has been assigned to " + u.getName() + " " + u.getLastName();
+					msg += "the turn " + u.turn[i].toString() + " has been assigned to " + u.getName() + " " + u.getLastName() + "\n";
 				}
 			}
+			msg = "you don't can generate more turns today for " + u.getName() + " " + u.getLastName();
 		}else {
 			msg = "Please, create the user and try again";
 		}
@@ -121,12 +122,10 @@ public class Control {
 	}
 	
 	public int num() {
-		int n = 00;
-		if (turn() != null && (turn().getNum() +1) <= 99) {
-			n = turn().getNum() +1;
+		int n = 0;
+		if (turn() != null && (turn().getNum()+1) <= 99) {
+			n = turn().getNum() + 1;
 		}
-		
-		
 		return n;
 	}
 	

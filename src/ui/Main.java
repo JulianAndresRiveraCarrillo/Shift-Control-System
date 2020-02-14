@@ -1,6 +1,7 @@
 package ui;
 
 import java.io.BufferedReader;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import exception.InputException;
@@ -38,14 +39,17 @@ public class Main {
 				System.out.println("Write the lastName");
 				String lastName = sc.nextLine();
 				System.out.println("Write the phone number");
-				long phone = sc.nextLong();
-				sc.nextLine();
-				System.out.println("Write the address");
-				String address = sc.nextLine();
-				try {
+				try {	
+					long phone = sc.nextLong();
+					sc.nextLine();
+					System.out.println("Write the address");
+					String address = sc.nextLine();
 					System.out.println(c.addUser(documentType, id, name, lastName, phone, address));
 				} catch (InputException e) {
 					e.getMessage();
+				}catch (InputMismatchException ex) {
+					System.err.println("you wrote a invalid phone");
+					sc.next();
 				}
 				break;
 
