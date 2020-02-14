@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Arrays;
+
 public class User {
 
 	//constants 
@@ -20,7 +22,9 @@ public class User {
 	public Turn[] turn;
 	
 	//constructor
-	public User(String documentType, String id, String name, String lastName, long phone, String address) {
+	public User(String documentType, String id, String name, String lastName, long 
+			
+			phone, String address) {
 		this.documentType = documentType;
 		this.id = id;
 		this.name = name;
@@ -81,5 +85,11 @@ public class User {
 	
 	public Turn[] getTurn() {
 		return turn;
+	}
+
+	@Override
+	public String toString() {
+		return "User [documentType=" + documentType + "\nid=" + id + "\nname=" + name + "\nlastName=" + lastName
+				+ "\nphone=" + phone + "\naddress=" + address + "\nturn=" + Arrays.toString(turn) + "]";
 	}
 }
