@@ -112,6 +112,9 @@ public class Control {
 			for (int i = 0; i < u.getTurn().length && !added; i++) {
 				if (u.turn[i] != null && u.turn[i].getStatus() == false) {
 					msg += "the user " + u.getName() + " " + u.getLastName() + " has the turn " +u.turn[i] + " unanttended\n";
+					added = true;
+				}else if (i == u.turn.length -1 && u.turn[i] != null){
+					msg = "you don't can generate more turns today for " + u.getName() + " " + u.getLastName();
 				}else {
 					if (num() > 99) {
 						letters++;
@@ -126,7 +129,7 @@ public class Control {
 					msg += "the turn " + u.turn[i].toString() + " has been assigned to " + u.getName() + " " + u.getLastName() + "\n";
 				}
 			}
-			msg = "you don't can generate more turns today for " + u.getName() + " " + u.getLastName();
+			
 		}else {
 			throw new UserNotFoundException();
 		}
@@ -182,16 +185,19 @@ public class Control {
 	 * @param action receive if the turn was attended or not.<br>
 	 * @throws TurnNotFound if the turn doesn't exist.<br>
 	 */
-	public void setStatus(char l, int n,String action) throws TurnNotFound {
+	public String setStatus(char l, int n,String action) throws TurnNotFound {
+		String msg = "";
 		for (int i = 0; i < turns.size(); i++) {
 			if (l == '0'&& n == 0) {
 				throw new TurnNotFound();
 			}else if(Character.toUpperCase(l) == turns.get(i).getLetter() && n == turns.get(i).getNum()){
 				if (action.equalsIgnoreCase("SI") || action.equalsIgnoreCase("YES")) {
 					turns.get(i).setStatus(true);
+					msg = "the " + turns.get(i).toString() + " had been attended";
 				}
 			}
 		}
+		return msg;
 	}
 
 }

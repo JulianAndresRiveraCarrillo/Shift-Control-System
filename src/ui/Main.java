@@ -86,7 +86,7 @@ public class Main {
 				System.out.println("If You attended a this turn write 'YES'. If you didn't do it, Write 'NO'");
 				String action = sc.nextLine();
 				try {
-					c.setStatus(l, n, action);
+					System.out.println(c.setStatus(l, n, action));
 				} catch (TurnNotFound e) {
 					System.out.println(e.msg());
 				}
