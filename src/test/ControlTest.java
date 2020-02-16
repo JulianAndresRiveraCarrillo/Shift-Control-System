@@ -17,7 +17,7 @@ import model.User;
 
 class ControlTest {
 
-	Control c = new Control();;
+	Control co = new Control();;
 	User u;
 	
 	void Setup1() {
@@ -25,31 +25,31 @@ class ControlTest {
 	}
 	
 	void Setup2() throws InputException {
-		c.addUser("CC","123456789", "Pepito","Perez",3009596,"calle 30 # 3-89 ");
+		co.addUser("CC","123456789", "Pepito","Perez",3009596,"calle 30 # 3-89 ");
 	}
 	
 	void Setup3() throws InputException {
 		u = new User("PA", "1006549872", "Federico", "Prieto", 300595436, "Calle 70 # 3-56");
-		c.addUser("PA", "1006549872", "Federico", "Prieto", 300595436, "Calle 70 # 3-56");
+		co.addUser("PA", "1006549872", "Federico", "Prieto", 300595436, "Calle 70 # 3-56");
 		
 	}
 	
 	void Setup4() throws InputException, UserNotFoundException {
-		c.addUser("CC", "1006051976", "Armando", "Paredes", 300595436, "Calle 50 # 3-70");
-		c.addTurn("1006051976");
+		co.addUser("CC", "1006051976", "Armando", "Paredes", 300595436, "Calle 50 # 3-70");
+		co.addTurn("1006051976");
 		}
 	
 	void Setup5() throws InputException {
-		c.addUser("CC", "1006051976", "Armando", "Paredes", 300595436, "Calle 50 # 3-70");
-		c.addUser("TI", "31899407", "Gloria", "Salamanc", 301528611, "Calle 70 # 3-90");
-		c.addUser("CE", "19281218", "Armando", "Paredes", 316441558, "Calle 50 # 3-10");
-		c.addUser("PA", "1234568975", "Armando", "Paredes", 301528353, "Calle 50 # 3-00");
+		co.addUser("CC", "1006051976", "Armando", "Paredes", 300595436, "Calle 50 # 3-70");
+		co.addUser("TI", "31899407", "Gloria", "Salamanc", 301528611, "Calle 70 # 3-90");
+		co.addUser("CE", "19281218", "Armando", "Paredes", 316441558, "Calle 50 # 3-10");
+		co.addUser("PA", "1234568975", "Armando", "Paredes", 301528353, "Calle 50 # 3-00");
 	}
 	
 	@Test
-	void addUserTest() {
+	void addUserTest1() {
 		try {
-			assertTrue(c.addUser("TI", "100658947", "andres", "cordoba", 300595465, "Calle 73 # 3-69").equals("The user has been created"));
+			assertTrue(co.addUser("TI", "100658947", "andres", "cordoba", 300595465, "Calle 73 # 3-69").equals("The user has been created"));
 		} catch (InputException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,7 +59,8 @@ class ControlTest {
 	@Test
 	void addUserTest2() {
 		try {
-			assertEquals("The user has been created",c.addUser("CC", "1006051976", "Armando", "Paredes", 300595436, "Calle 50 # 3-70"));
+			Setup2();
+			assertEquals("The user is already created",co.addUser("CC","123456789", "Pepito","Perez",3009596,"calle 30 # 3-89 "));
 		} catch (InputException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,11 +70,11 @@ class ControlTest {
 	void addUserTest4() {
 		try {
 			Setup5();
-			assertTrue(c.addUser("CC", "1006051976", "Armando", "Paredes", 300595436, "Calle 50 # 3-70").equals("The user is already created"));
-			assertTrue(c.addUser("TI", "31899407", "Gloria", "Salamanc", 301528611, "Calle 70 # 3-90").equals("The user is already created"));
-			assertTrue(c.addUser("CE", "19281218", "Armando", "Paredes", 316441558, "Calle 50 # 3-10").equals("The user is already created"));
-			assertTrue(c.addUser("PA", "1234568975", "Armando", "Paredes", 301528353, "Calle 50 # 3-00").equals("The user is already created"));
-			assertTrue(c.addUser("CC","123456789", "Pepito","Perez",3009596,"calle 30 # 3-89 ").equals("The user has been created"));
+			assertTrue(co.addUser("CC", "1006051976", "Armando", "Paredes", 300595436, "Calle 50 # 3-70").equals("The user is already created"));
+			assertTrue(co.addUser("TI", "31899407", "Gloria", "Salamanc", 301528611, "Calle 70 # 3-90").equals("The user is already created"));
+			assertTrue(co.addUser("CE", "19281218", "Armando", "Paredes", 316441558, "Calle 50 # 3-10").equals("The user is already created"));
+			assertTrue(co.addUser("PA", "1234568975", "Armando", "Paredes", 301528353, "Calle 50 # 3-00").equals("The user is already created"));
+			assertTrue(co.addUser("CC","123456789", "Pepito","Perez",3009596,"calle 30 # 3-89 ").equals("The user has been created"));
 		} catch (InputException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,7 +84,7 @@ class ControlTest {
 	@Test
 	void searchUserTest() {
 		Setup1();
-		assertTrue("the user has not been created", c.searchUser("100658947") == null);
+		assertTrue("the user has not been created", co.searchUser("100658947") == null);
 	}
 	@Test
 	void searchUserTest2() {
@@ -94,20 +95,20 @@ class ControlTest {
 			e.printStackTrace();
 		}
 		String id = "123456789";
-		c.searchUser(id);
-		assertTrue(c.searchUser(id) != null);
+		co.searchUser(id);
+		assertTrue(co.searchUser(id) != null);
 	}
 	
 	void searchUserTest3() {
-		assertTrue(c.searchUser("31899407") == null);
-		assertTrue(c.searchUser("19281218") == null);
+		assertTrue(co.searchUser("31899407") == null);
+		assertTrue(co.searchUser("19281218") == null);
 	}
 	@Test
 	void searchUserTest4() {
 		User u2 = new User("CC", "123456798" , "Alexander", "Prieto", 315894650, "Calle 9 # 2-48");
 		try {
 			Setup3();
-			c.addUser("CC", "123456798" , "Alexander", "Prieto", 315894650, "Calle 9 # 2-48");
+			co.addUser("CC", "123456798" , "Alexander", "Prieto", 315894650, "Calle 9 # 2-48");
 		} catch (InputException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -115,8 +116,8 @@ class ControlTest {
 		
 		String id = "1006549872";
 		String id2 = "123456798";
-		assertTrue(c.searchUser(id).getId().equals(u.getId()));
-		assertTrue(c.searchUser(id2).getId().equals(u2.getId()));
+		assertTrue(co.searchUser(id).getId().equals(u.getId()));
+		assertTrue(co.searchUser(id2).getId().equals(u2.getId()));
 	}
 	
 	/*@Test
@@ -146,14 +147,14 @@ class ControlTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertEquals("Turn [A0]", c.showTurns(), "The turns are the same");
+		assertEquals("Turn [A0]", co.showTurns(), "The turns are the same");
 	}
 	
 	@Test
 	void setStatus() {
 		try {
 			Setup4();
-			assertEquals("the Turn [A0] had been attended", c.setStatus('A', 0, "yes"));
+			assertEquals("the Turn [A0] had been attended", co.setStatus('A', 0, "yes"));
 		} catch (InputException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
